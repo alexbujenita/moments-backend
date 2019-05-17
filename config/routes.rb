@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/auth/show", to: "auth#show"
 
   post "/photos", to: "photos#create"
+  delete "/photos/:id", to: "photos#destroy"
   
   resources :messages
   resources :photos
