@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def show
     user = User.find_by(id: params[:id])
     photos = user.photos
+    messages = user.messages
     user = {
       id: user.id,
       name: user.name,
@@ -16,7 +17,8 @@ class UsersController < ApplicationController
       avatar: user.avatar,
       avatar_filename: user.avatar_filename,
       bio: user.bio,
-      photos: photos
+      photos: photos,
+      messages: messages
     }
     render json: user
   end
