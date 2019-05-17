@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get "users/:id", to: "users#show"
   post "/auth/create", to: "auth#create"
   get "/auth/show", to: "auth#show"
+
+  post "/photos", to: "photos#create"
   
   resources :messages
   resources :photos
