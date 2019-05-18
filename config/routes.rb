@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   post "/photos", to: "photos#create"
   delete "/photos/:id", to: "photos#destroy"
+
+  post "/messages", to: "messages#create"
   
   resources :messages
   resources :photos
