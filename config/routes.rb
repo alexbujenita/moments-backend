@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   delete "/photos/:id", to: "photos#destroy"
 
   post "/messages", to: "messages#create"
+  get "/messages/:id", to: "messages#seen"
   
   resources :messages
   resources :photos
