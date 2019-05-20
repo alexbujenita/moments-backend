@@ -23,6 +23,26 @@ class UsersController < ApplicationController
     render json: user
   end
 
+  def edit_profile
+    user = User.find(params[:user_id])
+    photos = user.photos
+    messages = user.messages
+    user.update(user_params)
+    user = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      instagram: user.instagram,
+      flickr: user.flickr,
+      avatar: user.avatar,
+      avatar_filename: user.avatar_filename,
+      bio: user.bio,
+      photos: photos,
+      messages: messages
+    }
+    render json: user
+  end
+
   def create
     user = User.new(name: params[:name], email: params[:email], password: params[:password])
     if user.save
@@ -38,6 +58,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:user).permit(:name, :email, :flickr, :instagram, :bio)
   end
 end

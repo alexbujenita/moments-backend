@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   post "/auth/create", to: "auth#create"
   get "/auth/show", to: "auth#show"
 
+  patch "/users/edit", to: "users#edit_profile"
+
   post "/photos", to: "photos#create"
   delete "/photos/:id", to: "photos#destroy"
 
