@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/auth/show", to: "auth#show"
 
   patch "/users/edit", to: "users#edit_profile"
+  patch "/users/avatar", to: "users#edit_avatar"
 
   post "/photos", to: "photos#create"
   delete "/photos/:id", to: "photos#destroy"

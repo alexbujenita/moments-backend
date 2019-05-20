@@ -6,41 +6,22 @@ class UsersController < ApplicationController
 
   def show
     user = User.find_by(id: params[:id])
-    photos = user.photos
-    messages = user.messages
-    user = {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      instagram: user.instagram,
-      flickr: user.flickr,
-      avatar: user.avatar,
-      avatar_filename: user.avatar_filename,
-      bio: user.bio,
-      photos: photos,
-      messages: messages
-    }
-    render json: user
+
+    render json: generate_user_json(user)
+  end
+
+  def edit_avatar
+    user = User.find(params[:user_id])
+    # byebug
+    user.update(avatar: params[:avatar], avatar_filename: params[:avatar_filename])
+    render json: generate_user_json(user)
   end
 
   def edit_profile
     user = User.find(params[:user_id])
-    photos = user.photos
-    messages = user.messages
     user.update(user_params)
-    user = {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      instagram: user.instagram,
-      flickr: user.flickr,
-      avatar: user.avatar,
-      avatar_filename: user.avatar_filename,
-      bio: user.bio,
-      photos: photos,
-      messages: messages
-    }
-    render json: user
+
+    render json: generate_user_json(user)
   end
 
   def create
@@ -56,6 +37,23 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def generate_user_json(user)
+    photos = user.photos
+    messages = user.messages
+    {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      instagram: user.instagram,
+      flickr: user.flickr,
+      avatar: user.avatar,
+      avatar_filename: user.avatar_filename,
+      bio: user.bio,
+      photos: photos,
+      messages: messages
+    }
+  end
 
   def user_params
     params.require(:user).permit(:name, :email, :flickr, :instagram, :bio)
