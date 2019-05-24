@@ -21,6 +21,7 @@ class MessagesController < ApplicationController
       avatar: user.avatar,
       avatar_filename: user.avatar_filename,
       bio: user.bio,
+      hidden: user.hidden,
       photos: photos,
       messages: messages
     }

@@ -17,6 +17,12 @@ class UsersController < ApplicationController
     render json: generate_user_json(user)
   end
 
+  def visibility
+    user = User.find(params[:id])
+    user.update(hidden: !user.hidden)
+    render json: generate_user_json(user)
+  end
+
   def edit_profile
     user = User.find(params[:user_id])
     user.update(user_params)
@@ -50,6 +56,7 @@ class UsersController < ApplicationController
       avatar: user.avatar,
       avatar_filename: user.avatar_filename,
       bio: user.bio,
+      hidden: user.hidden,
       photos: photos,
       messages: messages
     }
