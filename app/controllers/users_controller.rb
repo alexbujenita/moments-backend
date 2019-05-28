@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(name: params[:name], email: params[:email], password: params[:password])
+    user = User.new(name: params[:name], email: params[:email], password: params[:password], hidden: params[:hidden])
     if user.save
       payload = { user_id: user.id }
       token = issue_token(payload)
