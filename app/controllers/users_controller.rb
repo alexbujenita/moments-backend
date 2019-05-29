@@ -6,8 +6,11 @@ class UsersController < ApplicationController
 
   def show
     user = User.find_by(id: params[:id])
-
-    render json: generate_user_json(user)
+    if user
+      render json: generate_user_json(user)
+    else
+      render json: { error: 'User not found' }
+    end
   end
 
   def edit_avatar
